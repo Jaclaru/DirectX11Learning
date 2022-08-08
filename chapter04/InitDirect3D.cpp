@@ -7,11 +7,13 @@
 //***************************************************************************************
 
 #include "D3DApp.h"
+#include "D3DUtil.h"
+#include "DXTrace.h"
 
 class InitDirect3DApp : public D3DApp
 {
 public:
-	InitDirect3DApp(HINSTANCE hInstance);
+	InitDirect3DApp(HINSTANCE hInstance, const std::wstring& windowName, int initWidth, int initHeight);
 	~InitDirect3DApp();
 
 	bool Init();
@@ -23,12 +25,17 @@ public:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 				   PSTR cmdLine, int showCmd)
 {
-	// Enable run-time memory check for debug builds.
+	// 这些参数不使用
+	UNREFERENCED_PARAMETER(prevInstance);
+	UNREFERENCED_PARAMETER(cmdLine);
+	UNREFERENCED_PARAMETER(showCmd);
+
+	// 允许在Debug版本进行运行时内存分配和泄漏检测
 #if defined(DEBUG) | defined(_DEBUG)
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
 
-	InitDirect3DApp theApp(hInstance);
+	InitDirect3DApp theApp(hInstance, L"DirectX11 Initialization", 1280, 720);
 	
 	if( !theApp.Init() )
 		return 0;
@@ -36,8 +43,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 	return theApp.Run();
 }
 
-InitDirect3DApp::InitDirect3DApp(HINSTANCE hInstance)
-: D3DApp(hInstance) 
+InitDirect3DApp::InitDirect3DApp(HINSTANCE hInstance, const std::wstring& windowName, int initWidth, int initHeight)
+: D3DApp(hInstance, windowName, initWidth, initHeight)
 {
 }
 
@@ -65,11 +72,12 @@ void InitDirect3DApp::UpdateScene(float dt)
 
 void InitDirect3DApp::DrawScene()
 {
-	assert(md3dImmediateContext);
-	assert(mSwapChain);
+	assert(m_pd3dImmediateContext);
+	assert(m_pSwapChain);
 
-	md3dImmediateContext->ClearRenderTargetView(mRenderTargetView, reinterpret_cast<const float*>(&Colors::Blue));
-	md3dImmediateContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
+	static float blue[4] = {0.0f, 0.0f, 1.0f, 1.0f};
+	m_pd3dImmediateContext->ClearRenderTargetView(m_pRenderTargetView.Get(), blue);
+	m_pd3dImmediateContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	HR(mSwapChain->Present(0, 0));
+	HR(m_pSwapChain->Present(0, 0));
 }

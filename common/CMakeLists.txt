@@ -13,3 +13,5 @@ set(common_SOURCES
 )
 
 add_library(${target} STATIC ${common_SOURCES})
+
+target_link_libraries(${target} d3d11.lib dxgi.lib dxguid.lib D3DCompiler.lib winmm.lib d2d1.lib dwrite.lib)

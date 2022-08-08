@@ -427,9 +427,6 @@ bool D3DApp::InitDirect3D()
         DXGI_FORMAT_R8G8B8A8_UNORM, 4, &m_4xMsaaQuality);
     assert(m_4xMsaaQuality > 0);
 
-
-
-
     ComPtr<IDXGIDevice> dxgiDevice = nullptr;
     ComPtr<IDXGIAdapter> dxgiAdapter = nullptr;
     ComPtr<IDXGIFactory1> dxgiFactory1 = nullptr;   // D3D11.0(包含DXGI1.1)的接口类
