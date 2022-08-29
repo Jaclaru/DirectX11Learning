@@ -2,21 +2,23 @@
 
 #include "D3DApp.h"
 
-struct Vectex
-{
-	DirectX::XMFLOAT3 Pos;
-	DirectX::XMFLOAT4 Color;
-};
-
-struct ConstantBuffer
-{
-	DirectX::XMMATRIX world;
-	DirectX::XMMATRIX view;
-	DirectX::XMMATRIX proj;
-};
-
 class BoxApp : public D3DApp
 {
+public:
+	struct Vectex
+	{
+		DirectX::XMFLOAT3 Pos;
+		DirectX::XMFLOAT4 Color;
+		static const D3D11_INPUT_ELEMENT_DESC inputLayout[2];
+	};
+
+	struct ConstantBuffer
+	{
+		DirectX::XMMATRIX world;
+		DirectX::XMMATRIX view;
+		DirectX::XMMATRIX proj;
+	};
+
 public:
 	BoxApp(HINSTANCE hInstance, const std::wstring& windowName, int initWidth, int initHeight);
 	~BoxApp();
@@ -31,8 +33,8 @@ public:
 	void OnMouseMove(WPARAM btnState, int x, int y);
 
 private:
-	bool InitResource();
 	bool InitEffect();
+	bool InitResource();
 
 private:
 	// ¶¥µã»º³åÇø
