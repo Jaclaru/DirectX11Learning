@@ -5,7 +5,7 @@
 class BoxApp : public D3DApp
 {
 public:
-	struct Vectex
+	struct Vertex
 	{
 		DirectX::XMFLOAT3 Pos;
 		DirectX::XMFLOAT4 Color;
