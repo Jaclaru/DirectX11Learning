@@ -33,7 +33,10 @@ public:
 	void OnMouseMove(WPARAM btnState, int x, int y);
 
 private:
+	// 初始化渲染效果
 	bool InitEffect();
+
+	// 初始化渲染资源
 	bool InitResource();
 
 private:
@@ -53,5 +56,11 @@ private:
 	ComPtr<ID3D11InputLayout> m_pVertexLayout;	
 		
 	// 用于修改GPU常量缓冲区的变量
-	ConstantBuffer m_CBuffer;                       	
+	ConstantBuffer m_CBuffer;            
+
+	// 用于更新变换矩阵的一些数值
+	float mTheta, mPhi, mRadius;
+
+	// 用于记录鼠标位置
+	POINT mLastMousePos;
 };

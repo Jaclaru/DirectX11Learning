@@ -27,6 +27,12 @@ public:
     virtual void DrawScene() = 0;               // 子类需要实现该方法，完成每一帧的绘制
     virtual LRESULT MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
     // 窗口的消息回调函数
+
+    // Convenience overrides for handling mouse input.
+    virtual void OnMouseDown(WPARAM btnState, int x, int y) { }
+    virtual void OnMouseUp(WPARAM btnState, int x, int y) { }
+    virtual void OnMouseMove(WPARAM btnState, int x, int y) { }
+
 protected:
     bool InitMainWindow();      // 窗口初始化
     bool InitDirect3D();        // Direct3D初始化

@@ -10,6 +10,8 @@ set(common_SOURCES
 		D3DUtil.cpp
 		DXTrace.h
 		DXTrace.cpp
+		MathHelper.h
+		MathHelper.cpp
 )
 
 add_library(${target} STATIC ${common_SOURCES})

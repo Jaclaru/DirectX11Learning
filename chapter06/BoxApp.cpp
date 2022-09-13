@@ -1,6 +1,7 @@
 #include "BoxApp.h"
 #include "D3DUtil.h"
 #include "DXTrace.h"
+#include "MathHelper.h"
 
 using namespace DirectX;
 
@@ -11,9 +12,13 @@ const D3D11_INPUT_ELEMENT_DESC BoxApp::Vertex::inputLayout[2] = {
 
 BoxApp::BoxApp(HINSTANCE hInstance, const std::wstring& windowName, int initWidth, int initHeight):
 	D3DApp(hInstance, windowName, initWidth, initHeight),
-	m_CBuffer()
+	m_CBuffer(),
+	mTheta(1.5f * XM_PI),
+	mPhi(0.25f * XM_PI),
+	mRadius(5.0f)
 {
-
+	mLastMousePos.x = 0;
+	mLastMousePos.y = 0;
 }
 
 BoxApp::~BoxApp()
@@ -38,13 +43,30 @@ bool BoxApp::Init()
 void BoxApp::OnResize()
 {
 	D3DApp::OnResize();
+
+	// 如果窗口大小改变了，那么需要更新横纵比，并且需要重新计算投影矩阵
+	m_CBuffer.proj = XMMatrixTranspose(XMMatrixPerspectiveFovLH(0.25f * XM_PI, AspectRatio(), 1.0f, 1000.0f));
 }
 
 void BoxApp::UpdateScene(float dt)
 {
-	static float phi = 0.0f, theta = 0.0f;
+	// 球体坐标转换成笛卡尔坐标
+	float x = mRadius * sinf(mPhi) * cosf(mTheta);
+	float z = mRadius * sinf(mPhi) * sinf(mTheta);
+	float y = mRadius * cosf(mPhi);
+
+	// 以下是通过旋转模型的方式
+	/*static float phi = 0.0f, theta = 0.0f;
 	phi += 0.3f * dt, theta += 0.37f * dt;
-	m_CBuffer.world = XMMatrixTranspose(XMMatrixRotationX(phi) * XMMatrixRotationY(theta));
+	m_CBuffer.world = XMMatrixTranspose(XMMatrixRotationX(phi) * XMMatrixRotationY(theta));*/
+
+	// 构建观察矩阵，通过改变相机的位置，来实现旋转，而不是直接旋转模型
+	XMVECTOR pos = XMVectorSet(x, y, z, 1.0f);
+	XMVECTOR target = XMVectorZero();
+	XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+
+	m_CBuffer.view = XMMatrixTranspose(XMMatrixLookAtLH(pos, target, up));
+
 	// 更新常量缓冲区，让立方体转起来
 	D3D11_MAPPED_SUBRESOURCE mappedData;
 	HR(m_pd3dImmediateContext->Map(m_pConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData));
@@ -64,6 +86,51 @@ void BoxApp::DrawScene()
 	// 绘制立方体
 	m_pd3dImmediateContext->DrawIndexed(36, 0, 0);
 	HR(m_pSwapChain->Present(0, 0));
+}
+
+void BoxApp::OnMouseDown(WPARAM btnState, int x, int y)
+{
+	mLastMousePos.x = x;
+	mLastMousePos.y = y;
+
+	SetCapture(m_hMainWnd);
+}
+
+void BoxApp::OnMouseUp(WPARAM btnState, int x, int y)
+{
+	ReleaseCapture();
+}
+
+void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
+{
+	if ((btnState & MK_LBUTTON) != 0)
+	{
+		// 使每个像素对应四分之一度
+		float dx = XMConvertToRadians(0.25f * static_cast<float>(x - mLastMousePos.x));
+		float dy = XMConvertToRadians(0.25f * static_cast<float>(y - mLastMousePos.y));
+
+		// 基于输入更新角度，使摄影机围绕框旋转
+		mTheta += dx;
+		mPhi += dy;
+
+		// 限制角度mPhi
+		mPhi = MathHelper::Clamp(mPhi, 0.1f, XM_PI - 0.1f);
+	}
+	else if((btnState & MK_RBUTTON) != 0)
+	{
+		// 使每个像素对应场景中0.005个单位
+		float dx = 0.005f * static_cast<float>(x - mLastMousePos.x);
+		float dy = 0.005f * static_cast<float>(y - mLastMousePos.y);
+
+		// 基于输入更摄影机半径
+		mRadius += dx - dy;
+
+		// 限制半径
+		mPhi = MathHelper::Clamp(mRadius, 3.0f, 15.0f);
+	}
+
+	mLastMousePos.x = x;
+	mLastMousePos.y = y;
 }
 
 bool BoxApp::InitEffect()

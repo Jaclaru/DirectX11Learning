@@ -157,8 +157,6 @@ bool GameApp::InitResource()
     D3D11SetDebugObjectName(m_pVertexShader.Get(), "Trangle_VS");
     D3D11SetDebugObjectName(m_pPixelShader.Get(), "Trangle_PS");
 
-
-
     return true;
 }
 
@@ -174,7 +172,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevInstance,
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-    BoxApp theApp(hInstance, L"Rendering a Triangle", 1280, 720);
+    BoxApp theApp(hInstance, L"Rendering a Box", 1280, 720);
 
     if (!theApp.Init())
         return 0;
