@@ -3,7 +3,9 @@ set(target chapter06)
 set(chapter06_SOURCES
         test.cpp
         BoxApp.h
-        BoxApp.cpp
+        BoxApp.cpp 
+        HillsApp.h
+        HillsApp.cpp
         )
 
 file(GLOB HLSL_FILES HLSL/*.hlsl HLSL/*.hlsli)
