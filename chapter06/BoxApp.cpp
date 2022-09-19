@@ -122,7 +122,7 @@ void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 		float dx = 0.005f * static_cast<float>(x - mLastMousePos.x);
 		float dy = 0.005f * static_cast<float>(y - mLastMousePos.y);
 
-		// 基于输入更摄影机半径
+		// 基于输入更新摄影机半径
 		mRadius += dx - dy;
 
 		// 限制半径

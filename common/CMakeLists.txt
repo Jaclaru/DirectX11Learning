@@ -12,6 +12,8 @@ set(common_SOURCES
 		DXTrace.cpp
 		MathHelper.h
 		MathHelper.cpp
+		GeometryGenerator.h
+		GeometryGenerator.cpp
 )
 
 add_library(${target} STATIC ${common_SOURCES})
