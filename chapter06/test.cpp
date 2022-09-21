@@ -4,6 +4,7 @@
 #include "D3DApp.h"
 #include "DXTrace.h"
 #include "BoxApp.h"
+#include "HillsApp.h"
 
 using namespace DirectX;
 
@@ -172,7 +173,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevInstance,
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-    BoxApp theApp(hInstance, L"Rendering a Box", 1280, 720);
+    HillsApp theApp(hInstance, L"Rendering a Box", 1280, 720);
 
     if (!theApp.Init())
         return 0;

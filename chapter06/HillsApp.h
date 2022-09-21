@@ -2,7 +2,7 @@
 
 #include "D3DApp.h"
 
-class HillApp : public D3DApp
+class HillsApp : public D3DApp
 {
 public:
 	struct Vertex
@@ -20,8 +20,8 @@ public:
 	};
 
 public:
-	HillApp(HINSTANCE hInstance, const std::wstring& windowName, int initWidth, int initHeight);
-	~HillApp();
+	HillsApp(HINSTANCE hInstance, const std::wstring& windowName, int initWidth, int initHeight);
+	~HillsApp();
 
 	bool Init();
 	void OnResize();
@@ -40,7 +40,7 @@ private:
 	float GetHeight(float x, float z) const;
 
 	// 构建几何缓冲
-	void BuildGeometryBuffers();
+	bool InitResource();
 
 private:
 	// 顶点缓冲区
