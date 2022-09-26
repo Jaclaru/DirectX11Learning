@@ -363,7 +363,7 @@ bool ShapesApp::InitResource()
 	m_pd3dImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	m_pd3dImmediateContext->IASetInputLayout(m_pVertexLayout.Get());
 
-	// 更改渲染设置
+	// 更改渲染设置，改成线框模式
 	D3D11_RASTERIZER_DESC wireframeDesc;
 	ZeroMemory(&wireframeDesc, sizeof(D3D11_RASTERIZER_DESC));
 	wireframeDesc.FillMode = D3D11_FILL_WIREFRAME;
