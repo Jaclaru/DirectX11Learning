@@ -48,6 +48,8 @@ endforeach()
 add_executable( ${target} WIN32 ${chapter06_SOURCES} ${HLSL_FILES})
 source_group("HLSL Files" FILES ${HLSL_FILES})
 
+file(COPY imgui.ini DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 target_link_libraries( ${target}
 		PRIVATE
 		common

@@ -7,6 +7,12 @@ project(DirectX11Learning)
 
 include_directories(common)
 
+#
+# ImGui(modified)
+#
+add_subdirectory("ImGui")
+set_target_properties(ImGui PROPERTIES FOLDER "ImGui")
+
 add_compile_definitions(UNICODE _UNICODE)
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 

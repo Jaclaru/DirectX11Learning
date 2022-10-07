@@ -77,7 +77,10 @@ void GameApp::OnResize()
 
 void GameApp::UpdateScene(float dt)
 {
-
+    // ImGui内部实例窗口
+    ImGui::ShowAboutWindow();
+    ImGui::ShowDemoWindow();
+    ImGui::ShowUserGuide();
 }
 
 void GameApp::DrawScene()
@@ -91,6 +94,12 @@ void GameApp::DrawScene()
 
     // 绘制三角形
     m_pd3dImmediateContext->Draw(3, 0);
+
+    ImGui::Render();
+    // 下面这句话会触发ImGui在Direct3D的绘制
+    // 因此需要在此之前将后备缓冲区绑定到渲染管线上
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
     HR(m_pSwapChain->Present(0, 0));
 }
 
@@ -174,7 +183,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevInstance,
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-    ShapesApp theApp(hInstance, L"Rendering a Box", 1280, 720);
+    GameApp theApp(hInstance, L"Rendering a Box", 1280, 720);
 
     if (!theApp.Init())
         return 0;
