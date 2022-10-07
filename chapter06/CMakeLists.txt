@@ -8,6 +8,8 @@ set(chapter06_SOURCES
         HillsApp.cpp
         ShapesDemo.h
         ShapesDemo.cpp
+        CubeApp.h
+        CubeApp.cpp
         )
 
 file(GLOB HLSL_FILES HLSL/*.hlsl HLSL/*.hlsli)
