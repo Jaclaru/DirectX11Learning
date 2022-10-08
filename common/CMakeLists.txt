@@ -14,6 +14,10 @@ set(common_SOURCES
 		MathHelper.cpp
 		GeometryGenerator.h
 		GeometryGenerator.cpp
+		LightHelper.h
+		Geometry.h
+		Vertex.h
+		Vertex.cpp
 )
 
 add_library(${target} STATIC ${common_SOURCES})

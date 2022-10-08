@@ -1,7 +1,9 @@
 set(target chapter07)
 
 set(chapter07_SOURCES
-        test.cpp
+        main.cpp
+        LightsApp.h
+        LightsApp.cpp
         )
 
 file(GLOB HLSL_FILES HLSL/*.hlsl HLSL/*.hlsli)
