@@ -64,6 +64,9 @@ D3DApp::~D3DApp()
     // 恢复所有默认设定
     if (m_pd3dImmediateContext)
         m_pd3dImmediateContext->ClearState();
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+    ImGui::DestroyContext();
 }
 
 HINSTANCE D3DApp::AppInst()const
@@ -208,6 +211,11 @@ void D3DApp::OnResize()
     m_ScreenViewport.MaxDepth = 1.0f;
 
     m_pd3dImmediateContext->RSSetViewports(1, &m_ScreenViewport);
+
+    // 设置调试对象名
+    D3D11SetDebugObjectName(m_pDepthStencilBuffer.Get(), "DepthStencilBuffer");
+    D3D11SetDebugObjectName(m_pDepthStencilView.Get(), "DepthStencilView");
+    D3D11SetDebugObjectName(m_pRenderTargetView.Get(), "BackBufferRTV[0]");
 }
 
 LRESULT D3DApp::MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -526,8 +534,6 @@ bool D3DApp::InitDirect3D()
         sd.Flags = 0;
         HR(dxgiFactory1->CreateSwapChain(m_pd3dDevice.Get(), &sd, m_pSwapChain.GetAddressOf()));
     }
-
-    
 
     // 可以禁止alt+enter全屏
     dxgiFactory1->MakeWindowAssociation(m_hMainWnd, DXGI_MWA_NO_ALT_ENTER | DXGI_MWA_NO_WINDOW_CHANGES);
