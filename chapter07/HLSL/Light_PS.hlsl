@@ -3,7 +3,7 @@
 // 像素着色器
 float4 PS(VertexOut pIn) : SV_Target
 {
-	// 标准化法向量
+	// 像素着色器的插值会导致向量不为单位向量，这里需要标准化法向量
 	pIn.normalW = normalize(pIn.normalW);
 
 	// 顶点指向眼睛的向量
@@ -31,6 +31,7 @@ float4 PS(VertexOut pIn) : SV_Target
 
 	float4 litColor = pIn.color * (ambient + diffuse) + spec;
 
+	// 通常采用漫反射材质的alpha值
 	litColor.a = g_Material.diffuse.a * pIn.color.a;
 
 	return litColor;

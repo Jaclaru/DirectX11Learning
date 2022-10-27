@@ -117,6 +117,7 @@ namespace Geometry
         inline void InsertVertexElement(VertexType& vertexDst, const VertexData& vertexSrc)
         {
             static std::string semanticName;
+            // 建立内存映射关系
             static const std::map<std::string, std::pair<size_t, size_t>> semanticSizeMap = {
                 {"POSITION", std::pair<size_t, size_t>(0, 12)},
                 {"NORMAL", std::pair<size_t, size_t>(12, 24)},
@@ -124,7 +125,7 @@ namespace Geometry
                 {"COLOR", std::pair<size_t, size_t>(40, 56)},
                 {"TEXCOORD", std::pair<size_t, size_t>(56, 64)}
             };
-
+            // 确定当前顶点需要插入的字节偏移位置
             for (size_t i = 0; i < ARRAYSIZE(VertexType::inputLayout); i++)
             {
                 semanticName = VertexType::inputLayout[i].SemanticName;
