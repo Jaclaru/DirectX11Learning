@@ -1,10 +1,10 @@
-
+ï»¿
 #pragma once
 
 #ifndef WINMAIN_H
 #define WINMAIN_H
 
-// ¶¨ÒåÏÂÃæÕâÐ©ºêÒÔÈ¥µôWindowsÖÐÄÇÐ©Ã»ÓÃµÄ×é¼þ
+// å®šä¹‰ä¸‹é¢è¿™äº›å®ä»¥åŽ»æŽ‰Windowsä¸­é‚£äº›æ²¡ç”¨çš„ç»„ä»¶
 
 #ifndef FULL_WINTARD
 #define WIN32_LEAN_AND_MEAN

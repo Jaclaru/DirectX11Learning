@@ -1,6 +1,6 @@
-set(target chapter07)
+set(target chapter08)
 
-set(chapter07_SOURCES
+set(chapter08_SOURCES
         main.cpp
         LightsApp.h
         LightsApp.cpp
@@ -47,7 +47,7 @@ foreach(HLSL_FILE ${HLSL_FILES})
                                 VS_SHADER_ENABLE_DEBUG $<$<CONFIG:Debug>:true>)
 endforeach()
 
-add_executable( ${target} WIN32 ${chapter07_SOURCES} ${HLSL_FILES})
+add_executable( ${target} WIN32 ${chapter08_SOURCES} ${HLSL_FILES})
 source_group("HLSL Files" FILES ${HLSL_FILES})
 
 target_link_libraries( ${target}
