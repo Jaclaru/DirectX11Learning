@@ -22,6 +22,10 @@ set(common_SOURCES
 		Mouse.cpp
 		Keyboard.h
 		Keyboard.cpp
+		WICTextureLoader11.h
+		WICTextureLoader11.cpp
+		DDSTextureLoader11.h
+		DDSTextureLoader11.cpp
 )
 
 add_compile_definitions(UNICODE _UNICODE)
