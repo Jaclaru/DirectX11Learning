@@ -1,4 +1,4 @@
-ï»¿#include "LightHelper.hlsli"
+#include "LightHelper.hlsli"
 
 Texture2D g_Tex : register(t0);
 SamplerState g_SamLinear : register(s0);
@@ -43,14 +43,14 @@ struct VertexPosTex
 struct VertexPosHWNormalTex
 {
     float4 posH : SV_POSITION;
-    float3 posW : POSITION;     // åœ¨ä¸–ç•Œä¸­çš„ä½ç½®
-    float3 normalW : NORMAL;    // æ³•å‘é‡åœ¨ä¸–ç•Œä¸­çš„æ–¹å‘
+    float3 posW : POSITION;     // ÔÚÊÀ½çÖĞµÄÎ»ÖÃ
+    float3 normalW : NORMAL;    // ·¨ÏòÁ¿ÔÚÊÀ½çÖĞµÄ·½Ïò
     float2 Tex : TEXCOORD;
 };
 
 struct VertexPosHTex
 {
-    float3 posH : SV_POSITION;
+    float4 posH : SV_POSITION;
     float2 Tex : TEXCOORD;
 };
 
