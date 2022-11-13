@@ -27,7 +27,7 @@ bool GameApp::Init()
 
     if (!InitEffect())
         return false;
-
+    
     if (!InitResource())
         return false;
 

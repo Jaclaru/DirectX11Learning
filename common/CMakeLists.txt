@@ -26,6 +26,8 @@ set(common_SOURCES
 		WICTextureLoader11.cpp
 		DDSTextureLoader11.h
 		DDSTextureLoader11.cpp
+		Transform.h
+		Transform.cpp
 )
 
 add_compile_definitions(UNICODE _UNICODE)
