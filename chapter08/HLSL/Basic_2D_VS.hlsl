@@ -5,6 +5,6 @@ VertexPosHTex VS(VertexPosTex vIn)
 {
     VertexPosHTex vOut;
     vOut.posH = float4(vIn.posL, 1.0f);
-    vOut.Tex = vIn.Tex;
+    vOut.tex = vIn.tex;
     return vOut;
 }

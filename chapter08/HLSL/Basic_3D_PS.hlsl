@@ -1,4 +1,3 @@
-// Basic_PS_3D.hlsl
 #include "Basic.hlsli"
 
 // ÏñËØ×ÅÉ«Æ÷(3D)
@@ -44,7 +43,7 @@ float4 PS(VertexPosHWNormalTex pIn) : SV_Target
     }
     
 
-    float4 texColor = g_Tex.Sample(g_SamLinear, pIn.Tex);
+    float4 texColor = g_Tex.Sample(g_SamLinear, pIn.tex);
     float4 litColor = texColor * (ambient + diffuse) + spec;
     litColor.a = texColor.a * g_Material.diffuse.a;
     

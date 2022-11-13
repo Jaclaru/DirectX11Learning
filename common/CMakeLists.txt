@@ -28,6 +28,8 @@ set(common_SOURCES
 		DDSTextureLoader11.cpp
 		Transform.h
 		Transform.cpp
+		Camera.h
+		Camera.cpp
 )
 
 add_compile_definitions(UNICODE _UNICODE)
