@@ -20,6 +20,7 @@ add_subdirectory(chapter04)
 add_subdirectory(chapter06)
 add_subdirectory(chapter07)
 add_subdirectory(chapter08)
+add_subdirectory(chapter09)
 add_subdirectory(common)
 
 if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Texture)

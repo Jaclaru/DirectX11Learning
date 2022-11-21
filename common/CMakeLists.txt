@@ -30,6 +30,8 @@ set(common_SOURCES
 		Transform.cpp
 		Camera.h
 		Camera.cpp
+		RenderStates.h
+		RenderStates.cpp
 )
 
 add_compile_definitions(UNICODE _UNICODE)
