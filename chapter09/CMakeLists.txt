@@ -2,8 +2,8 @@ set(target chapter09)
 
 set(chapter09_SOURCES
         main.cpp
-        LightsApp.h
-        LightsApp.cpp
+        GameApp.h
+        GameApp.cpp
         )
 
 add_compile_definitions(UNICODE _UNICODE)

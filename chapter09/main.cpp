@@ -1,5 +1,5 @@
 ﻿
-#include "LightsApp.h"
+#include "GameApp.h"
 
 using namespace DirectX;
 
