@@ -32,6 +32,9 @@ set(common_SOURCES
 		Camera.cpp
 		RenderStates.h
 		RenderStates.cpp
+		EffectHelper.h
+		Effects.h
+		BasicEffect.cpp
 )
 
 add_compile_definitions(UNICODE _UNICODE)
