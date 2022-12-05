@@ -35,6 +35,8 @@ set(common_SOURCES
 		EffectHelper.h
 		Effects.h
 		BasicEffect.cpp
+		GameObject.h
+		GameObject.cpp
 )
 
 add_compile_definitions(UNICODE _UNICODE)
