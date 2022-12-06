@@ -221,7 +221,7 @@ void GameApp::DrawScene()
 
     // 关闭反射绘制
     m_BasicEffect.SetReflectionState(false);
-    m_BasicEffect.SetRenderAlphaBlendWithStencil(m_pd3dImmediateContext.Get(), 1);
+    m_BasicEffect.SetRenderAlphaBlend(m_pd3dImmediateContext.Get());
 
     m_Mirror.Draw(m_pd3dImmediateContext.Get(), m_BasicEffect);
 
