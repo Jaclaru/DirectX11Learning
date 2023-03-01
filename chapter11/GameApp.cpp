@@ -75,7 +75,7 @@ void GameApp::UpdateScene(float dt)
 
         // 将位置限制在[-8.9f, 8.9f]的区域内
         // 不允许穿地
-        XMFLOAT3 adjustedPos;
+        XMFLOAT3 adjustedPos{};
         XMStoreFloat3(&adjustedPos, XMVectorClamp(cam1st->GetPositionXM(), XMVectorSet(-8.9f, 0.0f, -8.9f, 0.0f), XMVectorReplicate(8.9f)));
         cam1st->SetPosition(adjustedPos);
 
@@ -329,6 +329,25 @@ bool GameApp::InitResource()
     m_Mirror.SetTexture(texture.Get());
     m_Mirror.SetMaterial(material);
 
+    // 初始化三角形
+    VertexPosColor vertices[] =
+    {
+        { XMFLOAT3(-1.0f * 3, -0.866f * 3, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+        { XMFLOAT3(0.0f * 3, 0.866f * 3, 0.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+        { XMFLOAT3(1.0f * 3, -0.866f * 3, 0.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) }
+    };
+    // 设置顶点缓存区描述
+    D3D11_BUFFER_DESC vbd;
+    ZeroMemory(&vbd, sizeof vbd);
+    vbd.Usage = D3D11_USAGE_IMMUTABLE;
+    vbd.ByteWidth = sizeof vertices;
+    vbd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    vbd.CPUAccessFlags = 0;
+    // 新建顶点缓冲区
+    D3D11_SUBRESOURCE_DATA InitData;
+    ZeroMemory(&vbd, sizeof InitData);
+    InitData.pSysMem = vertices;
+    HR(m_pd3dDevice->CreateBuffer(&vbd, &InitData, m_pVer))
     // ******************
     // 初始化摄像机
     //
@@ -357,14 +376,14 @@ bool GameApp::InitResource()
     m_BasicEffect.SetRefShadowMatrix(XMMatrixShadow(XMVectorSet(0.0f, 1.0f, 0.0f, 0.99f), XMVectorSet(0.0f, 10.0f, 30.0f, 1.0f)));
 
     // 环境光
-    DirectionalLight dirLight;
+    DirectionalLight dirLight{};
     dirLight.ambient = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
     dirLight.diffuse = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
     dirLight.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
     dirLight.direction = XMFLOAT3(0.0f, -1.0f, 0.0f);
     m_BasicEffect.SetDirLight(0, dirLight);
     // 灯光
-    PointLight pointLight;
+    PointLight pointLight{};
     pointLight.position = XMFLOAT3(0.0f, 10.0f, -10.0f);
     pointLight.ambient = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
     pointLight.diffuse = XMFLOAT4(0.6f, 0.6f, 0.6f, 1.0f);

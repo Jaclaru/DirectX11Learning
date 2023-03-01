@@ -114,7 +114,7 @@ namespace Geometry
 
         // 根据目标顶点类型选择性将数据插入
         template<class VertexType>
-        inline void InsertVertexElement(VertexType& vertexDst, const VertexData& vertexSrc)
+        void InsertVertexElement(VertexType& vertexDst, const VertexData& vertexSrc)
         {
             static std::string semanticName;
             // 建立内存映射关系

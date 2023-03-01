@@ -26,7 +26,7 @@ public:
     // 获取物体变换
     Transform& GetTransform();
     // 获取物体变换
-    const Transform& GetTransform() const;
+    [[nodiscard]] const Transform& GetTransform() const;
 
     // 设置缓冲区
     template<class VertexType, class IndexType>
@@ -53,7 +53,7 @@ private:
 };
 
 template<class VertexType, class IndexType>
-inline void GameObject::SetBuffer(ID3D11Device* device, const Geometry::MeshData<VertexType, IndexType>& meshData)
+void GameObject::SetBuffer(ID3D11Device* device, const Geometry::MeshData<VertexType, IndexType>& meshData)
 {
     // 释放旧资源
     m_pVertexBuffer.Reset();
@@ -68,7 +68,7 @@ inline void GameObject::SetBuffer(ID3D11Device* device, const Geometry::MeshData
     D3D11_BUFFER_DESC vbd;
     ZeroMemory(&vbd, sizeof(vbd));
     vbd.Usage = D3D11_USAGE_IMMUTABLE;
-    vbd.ByteWidth = (UINT)meshData.vertexVec.size() * m_VertexStride;
+    vbd.ByteWidth = static_cast<UINT>(meshData.vertexVec.size()) * m_VertexStride;
     vbd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
     vbd.CPUAccessFlags = 0;
     // 新建顶点缓冲区
@@ -78,7 +78,7 @@ inline void GameObject::SetBuffer(ID3D11Device* device, const Geometry::MeshData
     device->CreateBuffer(&vbd, &InitData, m_pVertexBuffer.GetAddressOf());
 
     // 设置索引缓冲区描述
-    m_IndexCount = (UINT)meshData.indexVec.size();
+    m_IndexCount = static_cast<UINT>(meshData.indexVec.size());
     D3D11_BUFFER_DESC ibd;
     ZeroMemory(&ibd, sizeof(ibd));
     ibd.Usage = D3D11_USAGE_IMMUTABLE;
