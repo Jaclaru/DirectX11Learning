@@ -32,7 +32,7 @@ private:
     UINT m_vertex_count_uint_;                                         // 顶点数目
     Mode m_show_mode_;
 
-    BasicEffect m_BasicEffect;								    // 对象渲染特效管理
+    BasicEffect m_basic_effect_;								    // 对象渲染特效管理
 
 };
 

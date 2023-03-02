@@ -56,7 +56,7 @@ public:
     // 渲染模式的变更
     //
 
- // 默认状态来绘制
+	// 默认状态来绘制
     void SetRenderDefault(ID3D11DeviceContext* deviceContext);
     // Alpha混合绘制
     void SetRenderAlphaBlend(ID3D11DeviceContext* deviceContext);
@@ -80,7 +80,12 @@ public:
     void Set2DRenderDefault(ID3D11DeviceContext* deviceContext);
     // 2D混合绘制
     void Set2DRenderAlphaBlend(ID3D11DeviceContext* deviceContext);
-
+    // 绘制三角形分裂
+    void SetRenderSplitTriangle(ID3D11DeviceContext * deviceContext) const;
+    // 绘制无上下盖的圆柱体
+    void SetRenderCylinderNoCap(ID3D11DeviceContext * deviceContext) const;
+    // 绘制所有顶点的法向量
+    void SetRenderNormal(ID3D11DeviceContext * deviceContext) const;
 
 
     //
@@ -112,6 +117,8 @@ public:
 
     void SetEyePos(const DirectX::XMFLOAT3& eyePos);
 
+    // 设置圆柱体侧面高度
+    void SetCylinderHeight(float height) const;
 
 
     //
