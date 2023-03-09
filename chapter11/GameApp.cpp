@@ -221,8 +221,9 @@ void GameApp::ResetRoundWire()
     VertexPosNormalColor vertices[41];
     for (int i = 0; i < 40; ++i)
     {
-        vertices[i].pos = XMFLOAT3(cosf(XM_PI / 20 * i), -1.0f, -sinf(XM_PI / 20 * i));
-        vertices[i].normal = XMFLOAT3(cosf(XM_PI / 20 * i), 0.0f, -sinf(XM_PI / 20 * i));
+        const auto int_cast_to_float = static_cast<float>(i);
+        vertices[i].pos = XMFLOAT3(cosf(XM_PI / 20 * int_cast_to_float), -1.0f, -sinf(XM_PI / 20 * int_cast_to_float));
+        vertices[i].normal = XMFLOAT3(cosf(XM_PI / 20 * int_cast_to_float), 0.0f, -sinf(XM_PI / 20 * int_cast_to_float));
         vertices[i].color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
     }
     vertices[40] = vertices[0];

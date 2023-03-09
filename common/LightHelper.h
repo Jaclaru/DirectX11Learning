@@ -1,7 +1,6 @@
 #ifndef LIGHTHELPER_H
 #define LIGHTHELPER_H
 
-#include <cstring>
 #include <DirectXMath.h>
 
 // 方向光

@@ -36,8 +36,7 @@ cbuffer CBChangesRarely : register(b4)
     DirectionalLight g_DirLight[5];
     PointLight g_PointLight[5];
     SpotLight g_SpotLight[5];
-    float3 pads;
-	float g_CylinderHeight;
+    float g_CylinderHeight;
 }
 
 struct VertexPosColor

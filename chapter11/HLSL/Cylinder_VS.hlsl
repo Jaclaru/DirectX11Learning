@@ -3,7 +3,7 @@
 VertexPosHWNormalColor VS(VertexPosNormalColor vIn)
 {
     VertexPosHWNormalColor vOut;
-    matrix viewProj = mul(g_View, g_Proj);
+    const matrix viewProj = mul(g_View, g_Proj);
     float4 posW = mul(float4(vIn.posL, 1.0f), g_World);
 
     vOut.posH = mul(posW, viewProj);

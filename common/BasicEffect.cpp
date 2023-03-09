@@ -53,7 +53,6 @@ public:
         DirectionalLight dirLight[BasicEffect::maxLights];
         PointLight pointLight[BasicEffect::maxLights];
         SpotLight spotLight[BasicEffect::maxLights];
-        DirectX::XMFLOAT3 pads;
         float cylinderHeight;
     };
 
@@ -536,6 +535,12 @@ void BasicEffect::Apply(ID3D11DeviceContext* deviceContext)
     pCBuffers[2]->BindVS(deviceContext);
     pCBuffers[3]->BindVS(deviceContext);
     pCBuffers[4]->BindVS(deviceContext);
+
+	pCBuffers[0]->BindGS(deviceContext);
+    pCBuffers[1]->BindGS(deviceContext);
+    pCBuffers[2]->BindGS(deviceContext);
+    pCBuffers[3]->BindGS(deviceContext);
+    pCBuffers[4]->BindGS(deviceContext);
 
     pCBuffers[0]->BindPS(deviceContext);
     pCBuffers[1]->BindPS(deviceContext);

@@ -13,10 +13,10 @@ void GS(line VertexPosHWNormalColor input[2], inout TriangleStream<VertexPosHWNo
     //   <--       |___\|
     //           v1(i1) v0(i0)
 
-    float3 upDir = normalize(cross(input[0].normalW, (input[1].posW - input[0].posW)));
+    const float3 upDir = normalize(cross(input[0].normalW, (input[1].posW - input[0].posW)));
     VertexPosHWNormalColor v2, v3;
     
-    matrix viewProj = mul(g_View, g_Proj);
+    const matrix viewProj = mul(g_View, g_Proj);
 
 
     v2.posW = input[1].posW + upDir * g_CylinderHeight;
