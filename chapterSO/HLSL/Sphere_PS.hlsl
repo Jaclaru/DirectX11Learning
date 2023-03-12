@@ -2,18 +2,18 @@
 
 float4 PS(VertexPosHWNormalColor pIn) : SV_Target
 {
-    // æ ‡å‡†åŒ–æ³•å‘é‡
+    // ±ê×¼»¯·¨ÏòÁ¿
     pIn.normalW = normalize(pIn.normalW);
 
-    // é¡¶ç‚¹æŒ‡å‘çœ¼ç›çš„å‘é‡
+    // ¶¥µãÖ¸ÏòÑÛ¾¦µÄÏòÁ¿
     float3 toEyeW = normalize(g_EyePosW - pIn.posW);
 
-    // åˆå§‹åŒ–ä¸º0 
+    // ³õÊ¼»¯Îª0 
     float4 ambient = float4(0.0f, 0.0f, 0.0f, 0.0f);
     float4 diffuse = float4(0.0f, 0.0f, 0.0f, 0.0f);
     float4 spec = float4(0.0f, 0.0f, 0.0f, 0.0f);
 
-    // åªè®¡ç®—æ–¹å‘å…‰
+    // Ö»¼ÆËã·½Ïò¹â
     ComputeDirectionalLight(g_Material, g_DirLight[0], pIn.normalW, toEyeW, ambient, diffuse, spec);
 
     return pIn.color * (ambient + diffuse) + spec;

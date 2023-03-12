@@ -1,8 +1,10 @@
 #include "Basic.hlsli"
 
+// ¶¥µã×ÅÉ«Æ÷(3D)
 VertexPosHWNormalColor VS(VertexPosNormalColor vIn)
 {
     VertexPosHWNormalColor vOut;
+    
     const matrix viewProj = mul(g_View, g_Proj);
     float4 posW = mul(float4(vIn.posL, 1.0f), g_World);
 
@@ -12,4 +14,3 @@ VertexPosHWNormalColor VS(VertexPosNormalColor vIn)
     vOut.color = vIn.color;
     return vOut;
 }
-

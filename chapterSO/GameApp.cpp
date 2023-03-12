@@ -271,14 +271,7 @@ void GameApp::ResetSplitedTriangle()
         HR(m_pd3dDevice->CreateBuffer(&vbd, nullptr, m_pVertexBuffers[i].ReleaseAndGetAddressOf()));
         m_BasicEffect.SetStreamOutputSplitedTriangle(m_pd3dImmediateContext.Get(), m_pVertexBuffers[i - 1].Get(), m_pVertexBuffers[i].Get());
         // 第一次绘制需要调用一般绘制指令，之后就可以使用DrawAuto了
-        if (i == 1)
-        {
-            m_pd3dImmediateContext->Draw(m_InitVertexCounts, 0);
-        }
-        else
-        {
-            m_pd3dImmediateContext->DrawAuto();
-        }
+        i == 1 ? m_pd3dImmediateContext->Draw(m_InitVertexCounts, 0) : m_pd3dImmediateContext->DrawAuto();
 
     }
 
@@ -347,14 +340,7 @@ void GameApp::ResetSplitedSnow()
         HR(m_pd3dDevice->CreateBuffer(&vbd, nullptr, m_pVertexBuffers[i].ReleaseAndGetAddressOf()));
         m_BasicEffect.SetStreamOutputSplitedSnow(m_pd3dImmediateContext.Get(), m_pVertexBuffers[i - 1].Get(), m_pVertexBuffers[i].Get());
         // 第一次绘制需要调用一般绘制指令，之后就可以使用DrawAuto了
-        if (i == 1)
-        {
-            m_pd3dImmediateContext->Draw(m_InitVertexCounts, 0);
-        }
-        else
-        {
-            m_pd3dImmediateContext->DrawAuto();
-        }
+        i == 1 ? m_pd3dImmediateContext->Draw(m_InitVertexCounts, 0) : m_pd3dImmediateContext->DrawAuto();
     }
 
 //#if defined(DEBUG) | defined(_DEBUG)
@@ -421,14 +407,7 @@ void GameApp::ResetSplitedSphere()
         HR(m_pd3dDevice->CreateBuffer(&vbd, nullptr, m_pVertexBuffers[i].ReleaseAndGetAddressOf()));
         m_BasicEffect.SetStreamOutputSplitedSphere(m_pd3dImmediateContext.Get(), m_pVertexBuffers[i - 1].Get(), m_pVertexBuffers[i].Get());
         // 第一次绘制需要调用一般绘制指令，之后就可以使用DrawAuto了
-        if (i == 1)
-        {
-            m_pd3dImmediateContext->Draw(m_InitVertexCounts, 0);
-        }
-        else
-        {
-            m_pd3dImmediateContext->DrawAuto();
-        }
+        i == 1 ? m_pd3dImmediateContext->Draw(m_InitVertexCounts, 0) : m_pd3dImmediateContext->DrawAuto();
     }
 
 //#if defined(DEBUG) | defined(_DEBUG)
