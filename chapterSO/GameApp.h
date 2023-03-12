@@ -1,7 +1,7 @@
 ﻿#ifndef GAMEAPP_H
 #define GAMEAPP_H
 
-#include "d3dApp.h"
+#include "D3DApp.h"
 #include "SOEffect.h"
 #include "Vertex.h"
 

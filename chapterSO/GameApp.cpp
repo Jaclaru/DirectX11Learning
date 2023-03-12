@@ -1,5 +1,5 @@
 ﻿#include "GameApp.h"
-#include "d3dUtil.h"
+#include "D3DUtil.h"
 #include "DXTrace.h"
 using namespace DirectX;
 

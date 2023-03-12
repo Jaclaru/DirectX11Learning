@@ -1,5 +1,5 @@
 #include "SOEffect.h"
-#include "d3dUtil.h"
+#include "D3DUtil.h"
 #include "EffectHelper.h"	// 必须晚于Effects.h和d3dUtil.h包含
 #include "DXTrace.h"
 #include "Vertex.h"
