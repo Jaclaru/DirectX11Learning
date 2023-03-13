@@ -24,6 +24,7 @@ add_subdirectory(chapter09)
 add_subdirectory(chapter10)
 add_subdirectory(chapter11)
 add_subdirectory(chapterSO)
+add_subdirectory(TreeBillboard)
 add_subdirectory(common)
 
 if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Texture)
